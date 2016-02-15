@@ -4,8 +4,8 @@
     <form name="playlistForm" novalidate>
       <div class="form-group">
         <label for="playlistName">Title</label>
-        <input name="playlistName" type="text" ng-model="name" class="form-control" ng-minlength="1" ng-maxlength="16" required>
-        <p>{{ name }}</p>
+        <input name="playlistName" type="text" ng-model="playlistName" class="form-control" ng-minlength="1" ng-maxlength="16" required>
+        <div ng-show="playlistForm.$invalid && !playlistForm.playlistName.$pristine" class="alert alert-warning">Please enter a name</div>
       </div>
       <div class="form-group">
         <button class="btn btn-success" type="submit" ng-disabled="playlistForm.$invalid">Create a playlist</button>
