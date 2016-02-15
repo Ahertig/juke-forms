@@ -43,7 +43,11 @@ juke.factory('PlaylistFactory', function($http, SongFactory) {
   };
 
   Factory.getSongs = function(id) {
-    return PlaylistFactory.fetchById($stateParams.playlistId).then(function(playlist) { return playlist.songs(); })
+    return PlaylistFactory.fetchById($stateParams.playlistId)
+    .then(function(playlist) {
+      playlist.songs = playlist.songs.map(SongFactory.convert);
+      return playlist.songs();
+    })
   }
 
 
