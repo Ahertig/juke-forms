@@ -34,6 +34,18 @@ juke.factory('PlaylistFactory', function($http, SongFactory) {
       });
     }
 
+  Factory.addSong = function(id, song) {
+    return $http
+      .post('/api/playlists/' + id + '/songs', {song: song})
+      .then(function(song) { 
+        return song;
+      });
+  };
+
+  Factory.getSongs = function(id) {
+    return PlaylistFactory.fetchById($stateParams.playlistId).then(function(playlist) { return playlist.songs(); })
+  }
+
 
   return Factory;
 });

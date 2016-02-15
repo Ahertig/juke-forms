@@ -24,4 +24,24 @@
   </table>
   <small ng-hide="playlist.songs.length">No songs.</small>
   <hr>
+
+  <h3>Add songs to playlist</h3>
+    <form name="songsForm" novalidate>
+      <div class="form-group">
+        <label for="name">Song</label>
+        <select name="songOptions" ng-options="song as song.name for song in allSongs" ng-model="songToAdd" class="form-control" required></select>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-success" ng-disabled="!songToAdd" type="submit" ng-click="addSong(playlist._id, songToAdd)">Add song</button>
+      </div>
+    </form>
 </div>
+
+
+
+
+
+
+
+
+

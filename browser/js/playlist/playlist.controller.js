@@ -7,8 +7,11 @@ juke.controller('PlaylistsCtrl', function($scope, PlaylistFactory, playlists, $s
   }  
 });
 
-juke.controller('PlaylistCtrl', function($scope, playlist) {
+juke.controller('PlaylistCtrl', function($scope, playlist, allSongs, PlaylistFactory) {
 
   $scope.playlist = playlist;
+  $scope.allSongs = allSongs;
+
+  $scope.addSong = PlaylistFactory.addSong;
 
 });
