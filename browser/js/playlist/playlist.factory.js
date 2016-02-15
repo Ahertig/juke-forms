@@ -16,7 +16,11 @@ juke.factory('PlaylistFactory', function($http) {
     }
 
   Factory.fetchAll = function() {
-      return $http.get('/api/playlists').then(function (res) { return res.data; });
+      return $http.get('/api/playlists')
+      .then(function (res) { 
+        angular.copy(res.data, playlists)
+        return playlists;
+      });
     }
 
   return Factory;
