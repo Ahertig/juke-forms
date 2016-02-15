@@ -1,8 +1,14 @@
-juke.controller('PlaylistCtrl', function($scope, PlaylistFactory, playlists) {
+juke.controller('PlaylistsCtrl', function($scope, PlaylistFactory, playlists, $state) {
   $scope.sendPlaylist = function(playlistData) {
-    PlaylistFactory.create(playlistData).then(function() { $scope.playlistName = null; }); 
-  }
+    PlaylistFactory.create(playlistData).then(function(playlist) { 
+      // $scope.playlistName = null; 
+      $state.go('playlist', {playlistId: playlist._id});
+    }); 
+  }  
+});
 
-  // $scope.playlists = playlists;
-  
+juke.controller('PlaylistCtrl', function($scope, playlist) {
+
+  $scope.playlist = playlist;
+
 });

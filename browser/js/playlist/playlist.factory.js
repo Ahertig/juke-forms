@@ -1,4 +1,4 @@
-juke.factory('PlaylistFactory', function($http) {
+juke.factory('PlaylistFactory', function($http, SongFactory) {
 
   // make a cache of all playlists
   // scope will acess the playlists
@@ -15,6 +15,17 @@ juke.factory('PlaylistFactory', function($http) {
         });
     }
 
+  Factory.fetchById = function(id) {
+    return $http.get('/api/playlists/' + id)
+    .then(function(res) {
+      return res.data;
+    })
+    .then(function(playlist) {
+      if (playlist.songs) playlist.songs = playlist.songs.map(SongFactory.convert);
+      return playlist;
+    });
+  }
+
   Factory.fetchAll = function() {
       return $http.get('/api/playlists')
       .then(function (res) { 
@@ -22,6 +33,7 @@ juke.factory('PlaylistFactory', function($http) {
         return playlists;
       });
     }
+
 
   return Factory;
 });
