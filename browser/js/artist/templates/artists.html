@@ -1,0 +1,10 @@
+<div>
+  <h3>Artists</h3>
+    <input ng-model="words">
+    <p>{{ words }}</p>
+    <div class="list-group">
+      <div class="list-group-item" ng-repeat="artist in artists | filter: {name: words }">
+      <a ui-sref="artist({artistId: artist._id})">{{ artist.name }}</a>
+    </div>
+  </div>
+</div>
